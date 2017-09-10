@@ -1,0 +1,40 @@
+2013-12-31：今年google code停止服务器了，将代码从google code上迁移到taobao code。使用迁移库的命令总是失败，所以只将最后一个版本（98）迁移过去。s3c2440芯片开发板的嵌入式操作系统内核google code：https://s3c2440-operating-system.googlecode.com/svn/trunk s3c2440-operating-system --username gaofeilonglcu@gmail.com  Mg2yQ6qy9Xh9
+命令：svn checkout https://s3c2440-operating-system.googlecode.com/svn/trunk/ s3c2440-operating-system --username gaofeilonglcu@gmail.com
+
+
+命名规则：所有汇编标号均以"_"开头, bss段以"__"开头
+
+
+2440addr.h
+        FL2440开发板硬件地址、常量、及常用宏定义，用于C程序
+2440addr.S.h
+        FL2440开发板硬件地址、常量、及常用宏定义，用于汇编程序
+2440bsp.*
+        板级支持包，目前只包括初始化 MMU 前后的 put 系列函数
+2440string.*
+        memcpy memset strcpy strcat strcat strlen
+start.S
+        设置中断向量表各个入口函数
+init.S
+        初始化硬件、初始化各个模式下的堆栈、清空bss段、跳转到C程序去执行
+abnormal.S
+        中断子程序的入口
+interrupt.c
+        中断服务子程序, 如要要使能中断，使用时钟中断，需要关闭mmu
+boot.c
+        核心C文件, 内核，目前用作测试跳转后的C程序执行
+link.lds
+        连接脚本，设定各个段的layout及存储地址[加载地址]和运行地址[链接地址]
+serial.c
+        串口初始化、串口驱动及串口测试程序
+nand.c
+        NandFlash初始化、复位和读
+mmu.c
+        MMU初始化、激活MMU；如果不使用MMU，可以向任意地址写，使用MMU只能向合法的
+        地址写，如果向非法地址写，会卡住
+print.c
+        打印函数printk 
+list.h
+        链表支持
+mem.*
+        动态内存分配, buddy算法，slab算法和 kmalloc

@@ -1,0 +1,9 @@
+
+
+k9f1208
+
+secotr size = 512byte,block_pre_sector =32sector, block size = 512*32 =16K, device=4096block=64M
+
+k9f1g08
+
+secotr size = 2k, block_pre_sector =64sector, block size = 2*64 =128K, device=1024block=128M
